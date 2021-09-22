@@ -1,43 +1,106 @@
 --
+-- Atividade 01
+--
+
+--
+-- Crie um banco de dados para um serviço de um game Online , o nome do banco deverá ter o seguinte nome db_generation_game_online, onde, o sistema trabalhará com as informações dos personagens desse game. 
+--
+
+create database db_generation_game_online;
+
+--
+--O sistema trabalhará com 2 tabelas tb_personagem e tb_classe. Siga  exatamente esse passo a passo:
+--
+
+--
 -- Crie uma tabela tb_classe utilizando a habilidade de abstração e determine 3 atributos relevantes da classe para se trabalhar com o serviço desse  game Online.
 --
 
+use db_generation_game_online;
 
+create table tb_classe(
+    id int(5) auto_increment not null,
+    nomeAcessorio varchar (24) null,
+    tipoAcessorio varchar(24) null,
+    primary key(id)
+    );
+    
 --
 -- Crie uma tabela tb_personagem  e utilizando a habilidade de abstração e determine 5 atributos relevantes dos funcionários para se trabalhar com o serviço desse game Online (não esqueça de criar a foreign key de tb_classe nesta tabela).
 --
 
+create table tb_personagem (
+    id int(5) auto_increment not null,
+    fk_tb_classe int(5) not null,
+    nome varchar(24) not null,
+    sexo char(1) not null,
+    tipo varchar(24) not null,
+    poderAtaque int(5) not null,
+    poderDefesa int(5) not null,
+    primary key (id),
+    foreign key (fk_tb_classe) references tb_classe(id)
+    );
 
 --
 -- Popule esta tabela classe com até 5 dados.
 --
 
+insert into tb_classe (nomeAcessorio, tipoAcessorio) values 
+    ("Espingarda", "Arma"),
+    ("Metralhadora", "Arma"),
+    ("Katana", "Espada"),
+    ("Flecha", "Arma"),
+    ("Fuzil", "Arma");
 
 --
 -- Popule esta tabela personagem com até 8 dados.
 --
 
+insert into tb_personagem (fk_tb_classe, nome, sexo, tipo, poderAtaque, poderDefesa) values 
+    (4,"Thany", "F", " Arqueiro", 6000, 4000),
+    (1,"Zahir", "M", "Atirador", 2000, 920),
+    (2,"Calibrã", "M", "Atirador", 3000, 1000),
+    (4,"Jhuny", "F", "Arqueiro", 1010, 800),
+    (5,"Zafira", "F", "Atirador", 980, 1010),
+    (3,"Cage", "M", "Lutador", 3500,3000),
+    (4,"Sofy", "F", "Arqueiro", 4000, 3500),
+    (3,"Beny", "M", "Lutador", 3000, 2500);
 
 --
 -- Faça um select que retorne os personagens com o poder de ataque maior do que 2000.
 --
 
+select  tb_personagem.nome,  tb_personagem.tipo, tb_personagem.poderAtaque, tb_personagem.poderDefesa, tb_classe.nomeAcessorio, tb_classe.tipoAcessorio from tb_personagem 
+inner join tb_classe on tb_classe.id = tb_personagem.fk_tb_classe
+where tb_personagem.poderAtaque > 2000;
 
 --
 -- Faça um select trazendo  os personagens com poder de defesa entre 1000 e 2000.
 -- 
 
+select  tb_personagem.nome,  tb_personagem.tipo, tb_personagem.poderAtaque, tb_personagem.poderDefesa, tb_classe.nomeAcessorio, tb_classe.tipoAcessorio from tb_personagem 
+inner join tb_classe on tb_classe.id = tb_personagem.fk_tb_classe
+where tb_personagem.poderDefesa between '1000' and '2000';
 
 --
 -- Faça um select  utilizando LIKE buscando os personagens com a letra C.
 --
 
+select  tb_personagem.nome,  tb_personagem.tipo, tb_personagem.poderAtaque, tb_personagem.poderDefesa, tb_classe.nomeAcessorio, tb_classe.tipoAcessorio from tb_personagem 
+inner join tb_classe on tb_classe.id = tb_personagem.fk_tb_classe
+where tb_personagem.nome like "%c%";
 
 --
 -- Faça um um select com Inner join entre  tabela classe e personagem.
 --
 
+select  tb_personagem.nome,  tb_personagem.tipo, tb_personagem.poderAtaque, tb_personagem.poderDefesa, tb_classe.nomeAcessorio, tb_classe.tipoAcessorio from tb_personagem 
+inner join tb_classe on tb_classe.id = tb_personagem.fk_tb_classe;
 
 --
 -- Faça um select onde traga todos os personagem de uma classe específica (exemplo todos os personagens que são arqueiros).
 --
+
+select  tb_personagem.nome,  tb_personagem.tipo, tb_personagem.poderAtaque, tb_personagem.poderDefesa, tb_classe.nomeAcessorio, tb_classe.tipoAcessorio from tb_personagem 
+inner join tb_classe on tb_classe.id = tb_personagem.fk_tb_classe
+where tb_personagem.tipo like "%arqueiro%";
