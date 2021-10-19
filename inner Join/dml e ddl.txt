@@ -1,0 +1,11 @@
+DML (Linguagem de MANIPULAÇÃO de dados)
+INSERT
+UPDATE
+DELETE
+SELECT
+
+
+DDL (Linguagem de DEFINIÇÃO de dados)
+CREATE
+ALTER
+DROP

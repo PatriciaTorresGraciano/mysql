@@ -1,0 +1,51 @@
+--
+-- Crie um banco de dados para um e commerce, onde o sistema trabalhará com as informações dos produtos deste ecommerce. 
+--
+
+create database db_ecommerce;
+
+--
+-- Crie uma tabela produtos e utilizando a habilidade de abstração e determine 5 atributos relevantes dos produtos para se trabalhar com o serviço deste ecommerce.
+--
+
+use db_ecommerce;
+
+create table tb_produtos (
+    id bigint(5) auto_increment primary key,
+    nome varchar(50) not null,
+    categoria varchar(20) not null,
+    quantidade int(35) not null,
+    valor float(6) not null
+    );
+
+--
+-- Popule esta tabela com até 8 dados;
+--
+
+
+INSERT INTO tb_produtos (nome, categoria, quantidade, valor) values ( "produto1", "categoria1", 01, 11.11);
+INSERT INTO tb_produtos (nome, categoria, quantidade, valor) values ( "produto2", "categoria2", 02, 22.22);
+INSERT INTO tb_produtos (nome, categoria, quantidade, valor) values ( "produto3", "categoria",  03, 33.33);
+INSERT INTO tb_produtos (nome, categoria, quantidade, valor) values ( "produto4", "categoria4", 04, 44.44);
+INSERT INTO tb_produtos (nome, categoria, quantidade, valor) values ( "produto5", "categoria5", 05, 55.55);
+INSERT INTO tb_produtos (nome, categoria, quantidade, valor) values ( "produto6", "categoria6", 06, 66.66);
+INSERT INTO tb_produtos (nome, categoria, quantidade, valor) values ( "produto7", "categoria7", 07, 77.77);
+INSERT INTO tb_produtos (nome, categoria, quantidade, valor) values ( "produto8", "categoria8", 08, 88.88);
+
+--
+-- Faça um select que retorne os produtos com o valor maior do que 500.
+-- 
+
+select * from tb_produtos where valor >500;
+
+--
+-- Faça um select que retorne os produtos com o valor menor do que 500.
+--
+
+select * from tb_produtos where valor <500;
+
+--
+-- Ao término atualize um dado desta tabela através de uma query de atualização.
+--
+
+update tb_produtos set valor = 600 where id=6;
